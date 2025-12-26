@@ -1,0 +1,20 @@
+
+module top_wrapper(
+    input        rst_an,
+    input  [3:0] req,
+    output [3:0] grant
+);
+
+    wire clk_ps;
+
+    // This clock will come from Zynq PS in block design
+    // Vivado connects it automatically
+
+    round_robin_arbiter u_rr (
+        .rst_an (rst_an),
+        .clk    (clk_ps),
+        .req    (req),
+        .grant  (grant)
+    );
+
+endmodule
